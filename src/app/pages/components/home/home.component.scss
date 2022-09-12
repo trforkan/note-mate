@@ -1,0 +1,14 @@
+.page-layout {
+  // width: 50%;
+  height: 82vh;
+  border: 1px solid black;
+  .search-field {
+    margin-top: 20px;
+    width: 50%;
+  }
+
+  .add-note-button {
+    width: 150px;
+    margin-bottom: 15px;
+  }
+}
