@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
 
   constructor( private local: LocalService, private dialog: MatDialog , private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
+
+  dataLoad(){
     for(var i=0; i<localStorage.length; i++){
       // console.log(localStorage.getItem(localStorage.key(i)));
       // console.log(localStorage.key(i));
@@ -38,9 +39,21 @@ export class HomeComponent implements OnInit {
           body: <string>(localStorage.getItem(<string>localStorage.key(i)))
         });
       }
-
-
     }
+  }
+
+  ngOnInit(): void {
+    this.dataLoad();
+  }
+
+  formatStorage() {
+    this.searchedData?.splice(0);
+    this.local.formatData();
+  }
+
+  deleteNote(index: number) {
+    var titleName = localStorage.key(index);
+    this.local.removeData(titleName as string);
   }
 
   openDialog() {
@@ -57,22 +70,7 @@ export class HomeComponent implements OnInit {
     //   this.searchedData?.splice(0,this.searchedData.length);
     // }
 
-    for(var i=0; i<localStorage.length; i++){
-      // console.log(localStorage.getItem(localStorage.key(i)));
-      // console.log(localStorage.key(i));
-      var isPresent = false;
-      isPresent = localStorage.key(i)?.includes(<string>this.searchText.value.text) as boolean;
-
-      // console.log(localStorage.key(i)," - ",localStorage.key(i)?.includes(<string>this.searchText.value.text));
-      if(isPresent) {
-        this.searchedData?.push({
-          title: <string>(localStorage.key(i)),
-          body: <string>(localStorage.getItem(<string>localStorage.key(i)))
-        });
-      }
-
-
-    }
+    this.dataLoad();
 
   }
 

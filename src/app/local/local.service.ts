@@ -26,4 +26,8 @@ export class LocalService {
     localStorage.removeItem(title);
   }
 
+  formatData() {
+    localStorage.clear();
+  }
+
 }

@@ -8,7 +8,7 @@
     </mat-form-field>
 
     <div class="search-field result-field">
-      <ng-container *ngFor="let note of searchedData">
+      <div *ngFor="let note of searchedData; index as i" fxLayout="row" fxLayoutAlign="center center">
         <mat-expansion-panel  [hideToggle]="false" class="expansion-panel" >
           <mat-expansion-panel-header>
               <mat-panel-title>Title : {{note.title}}</mat-panel-title>
@@ -17,9 +17,14 @@
           <!-- {{localData}} -->
           Body : {{note.body}}
         </mat-expansion-panel>
-      </ng-container>
+
+        <button (click)="deleteNote(i)" mat-icon-button class="delete-icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
 
     </div>
+    <button (click)="formatStorage()" class="format-button" mat-raised-button>Format Local Storage</button>
 
   </div>
 

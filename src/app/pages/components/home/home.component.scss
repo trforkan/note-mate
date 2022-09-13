@@ -17,8 +17,22 @@
       position: sticky;
       overflow-y: scroll;
       .expansion-panel {
+        width: 90%;
         margin-bottom: 15px;
       }
+      .delete-icon {
+        margin-left: 10px;
+      }
+    }
+
+    .format-button {
+      position: absolute;
+      top: 16.5%;
+      left: 76%;
+      height: 50px;
+      background-color: #FE9595;
+      color: white;
+      font-size: 15px;
     }
   }
 
