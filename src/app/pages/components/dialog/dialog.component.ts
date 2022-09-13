@@ -28,10 +28,12 @@ export class DialogComponent implements OnInit {
 
   saveData() {
     console.log(this.note.value);
+    alert("Note added to local storage Successfully");
     this.local.saveData(
       <string>this.note.value.title,
       <string>this.note.value.body
     );
+    this.dialogRef.close();
   }
 
   closeDialog(){
