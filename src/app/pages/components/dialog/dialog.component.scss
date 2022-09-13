@@ -1,7 +1,13 @@
 .dialog-body {
   width: 500px;
   .action-buttons {
-    .action-button {
+    .cancel-button {
+      background-color: #FC95A4;
+      margin-left: 10px;
+      width: 120px;
+    }
+    .save-button {
+      background-color: #49BCF9;
       margin-left: 10px;
       width: 120px;
     }

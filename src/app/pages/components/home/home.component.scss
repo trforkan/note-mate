@@ -1,11 +1,22 @@
 .page-layout {
   // width: 50%;
-  height: 82vh;
+  height: 89.4%;
   // border: 1px solid black;
-  .search-field {
-    margin-top: 20px;
-    width: 50%;
+  .search-result {
+    width: 100%;
+    .search-field {
+      margin-top: 20px;
+      width: 50%;
+    }
+
+    .result-field {
+      height: 90%;
+      position: sticky;
+      overflow-y: scroll;
+    }
   }
+
+
 
   .add-note-button {
     width: 150px;

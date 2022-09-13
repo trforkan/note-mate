@@ -1,9 +1,29 @@
 <div class="page-layout" fxLayout="column" fxLayoutAlign="space-between center">
-  <mat-form-field [formGroup]="searchText" appearance="outline" fxLayout="column" class="search-field">
-    <mat-label fxLayoutAlign="">Search</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
-    <input (keyup)="searchData()" formControlName="text" type="text" matInput>
-  </mat-form-field>
+
+  <div class="search-result" fxLayout="column" fxLayoutAlign="start center">
+    <mat-form-field [formGroup]="searchText" appearance="outline" fxLayout="column" class="search-field">
+      <mat-label fxLayoutAlign="">Search</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input (keyup)="searchData()" formControlName="text" type="text" matInput>
+    </mat-form-field>
+
+    <div class="search-field result-field">
+      <ng-container *ngFor="let note of searchedData">
+        <mat-expansion-panel  [hideToggle]="false" >
+          <mat-expansion-panel-header>
+              <mat-panel-title>Title : {{note.title}}</mat-panel-title>
+              <mat-panel-description>Expand to see the message inside the note</mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- {{localData}} -->
+          Body : {{note.body}}
+        </mat-expansion-panel>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+
 
   <button mat-stroked-button class="add-note-button" (click)="openDialog()">Add Note</button>
 </div>
