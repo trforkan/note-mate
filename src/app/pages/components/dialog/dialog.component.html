@@ -1,1 +1,22 @@
-<p>dialog works!</p>
+<div class="dialog-body" fxLayout="column" [formGroup]="note">
+  <div class="dialog-body__title" fxLayout="column">
+    <h3>Title</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Note Title.....</mat-label>
+      <input formControlName="title" type="text" matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-body__note" fxLayout="column">
+    <h3>Body</h3>
+    <mat-form-field appearance="outline">
+      <textarea formControlName="body" matInput placeholder="Your Message" rows="6"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="action-buttons" fxLayoutAlign="end">
+    <button class="action-button" mat-raised-button>Cancel</button>
+    <button (click)="saveData()" class="action-button" mat-raised-button>Save</button>
+  </div>
+
+</div>

@@ -1,9 +1,9 @@
 <div class="page-layout" fxLayout="column" fxLayoutAlign="space-between center">
-  <mat-form-field appearance="outline" fxLayout="column" class="search-field">
+  <mat-form-field [formGroup]="searchText" appearance="outline" fxLayout="column" class="search-field">
     <mat-label fxLayoutAlign="">Search</mat-label>
     <mat-icon matPrefix>search</mat-icon>
-    <input type="text" matInput>
+    <input (keyup)="searchData()" formControlName="text" type="text" matInput>
   </mat-form-field>
 
-  <button mat-stroked-button class="add-note-button">Add Note</button>
+  <button mat-stroked-button class="add-note-button" (click)="openDialog()">Add Note</button>
 </div>

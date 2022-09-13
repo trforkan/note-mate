@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +17,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path:"", component: HomeComponent }
     ])
