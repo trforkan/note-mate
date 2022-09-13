@@ -12,7 +12,8 @@
     }
 
     .result-field {
-      height: 70%;
+      height: auto;
+      max-height: 70%;
       position: sticky;
       overflow-y: scroll;
       .expansion-panel {
