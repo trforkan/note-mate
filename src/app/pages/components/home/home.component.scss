@@ -10,9 +10,12 @@
     }
 
     .result-field {
-      height: 90%;
+      height: 70%;
       position: sticky;
       overflow-y: scroll;
+      .expansion-panel {
+        margin-bottom: 15px;
+      }
     }
   }
 

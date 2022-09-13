@@ -1,7 +1,7 @@
 import { LocalService } from './../../../local/local.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DialogComponent } from './../dialog/dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     text: ['']
   });
 
-  constructor(private local: LocalService, private dialog: MatDialog , private formBuilder: FormBuilder) { }
+  constructor( private local: LocalService, private dialog: MatDialog , private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     for(var i=0; i<localStorage.length; i++){
@@ -45,6 +45,9 @@ export class HomeComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(DialogComponent, { disableClose: true });
+    // this.dialofRef.open()
+    // console.log(dailogModal.afterClosed());
+
   }
 
   searchData() {

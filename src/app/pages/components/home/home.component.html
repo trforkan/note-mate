@@ -9,7 +9,7 @@
 
     <div class="search-field result-field">
       <ng-container *ngFor="let note of searchedData">
-        <mat-expansion-panel  [hideToggle]="false" >
+        <mat-expansion-panel  [hideToggle]="false" class="expansion-panel" >
           <mat-expansion-panel-header>
               <mat-panel-title>Title : {{note.title}}</mat-panel-title>
               <mat-panel-description>Expand to see the message inside the note</mat-panel-description>
