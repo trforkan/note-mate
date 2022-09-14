@@ -1,45 +1,47 @@
+import { localStorageData } from './../../../model/models';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalService } from './../../../local/local.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DialogComponent } from './../dialog/dialog.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
-  searchedData?: {
-    title: string,
-    body: string
-  }[]=[];
+  allData: localStorageData[] = [];
+  filteredNotes: localStorageData[] = [];
 
   dataPresent = false;
 
   searchText = this.formBuilder.group({
-    text: ['']
+    text: [''],
   });
 
-  constructor( private local: LocalService, private dialog: MatDialog , private formBuilder: FormBuilder) { }
+  constructor(
+    private local: LocalService,
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private snackbar: MatSnackBar
+  ) {}
 
+  dataLoad() {
+    this.allData?.splice(0);
+    this.filteredNotes?.splice(0);
 
-  dataLoad(){
-    for(var i=0; i<localStorage.length; i++){
-      // console.log(localStorage.getItem(localStorage.key(i)));
-      // console.log(localStorage.key(i));
-      var isPresent = false;
-      isPresent = localStorage.key(i)?.includes(<string>this.searchText.value.text) as boolean;
+    this.allData = this.local.getData();
 
-      // console.log(localStorage.key(i)," - ",localStorage.key(i)?.includes(<string>this.searchText.value.text));
-      if(isPresent) {
-        this.searchedData?.push({
-          title: <string>(localStorage.key(i)),
-          body: <string>(localStorage.getItem(<string>localStorage.key(i)))
-        });
+    var filterReferanceValue = this.searchText.value.text;
+      for( var i=0; i < this.allData.length; i++){
+        var objTitle = this.allData[i].title;
+        if(objTitle.includes(filterReferanceValue as string)){
+          this.filteredNotes?.push(this.allData[i]);
+        }
       }
-    }
   }
 
   ngOnInit(): void {
@@ -47,31 +49,34 @@ export class HomeComponent implements OnInit {
   }
 
   formatStorage() {
-    this.searchedData?.splice(0);
+    this.allData?.splice(0);
+    this.filteredNotes?.splice(0);
     this.local.formatData();
   }
 
   deleteNote(index: number) {
+
     var titleName = localStorage.key(index);
     this.local.removeData(titleName as string);
+    this.snackbar.open(`${titleName} is deleted successfully`);
+    setTimeout(()=>{
+      this.snackbar.dismiss();
+    },1500);
+
+    this.dataLoad();
   }
 
   openDialog() {
-    this.dialog.open(DialogComponent, { disableClose: true });
-    // this.dialofRef.open()
-    // console.log(dailogModal.afterClosed());
+    const dialogRef = this.dialog.open(DialogComponent, {
+      disableClose: true
+    });
 
+    dialogRef.afterClosed().subscribe(() => {
+      this.dataLoad();
+    });
   }
 
   searchData() {
-
-    this.searchedData?.splice(0);
-    // if(this.searchText.value.text==""){
-    //   this.searchedData?.splice(0,this.searchedData.length);
-    // }
-
     this.dataLoad();
-
   }
-
 }

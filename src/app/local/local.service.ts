@@ -1,3 +1,4 @@
+import { localStorageData } from './../model/models';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,25 +6,28 @@ import { Injectable } from '@angular/core';
 })
 export class LocalService {
 
-  searchedData?: {
-    title: string,
-    body: string
+  constructor() {}
+
+  saveData(object: localStorageData) {
+    localStorage.setItem(object.title, JSON.stringify(object));
   }
 
-  constructor() { }
+  getData() {
+    var allNotes:localStorageData[]=[];
 
-  saveData(title: string, body: string) {
-    localStorage.setItem(title, body);
+    allNotes.splice(0);
+
+    for(var i=0; i<localStorage.length; i++) {
+      var key = (localStorage.key(i));
+      var obj=localStorage.getItem((key as string));
+      allNotes.push(JSON.parse(obj as string));
+    }
+
+    return allNotes;
   }
 
-  getData(index: number){
-    // return localStorage.getItem(localStorage.key(index));
-    // var value = localStorage.getItem(localStorage.key(index));
-    // if (value && value.startsWith('Good') console.log('found it!', 0, value);
-  }
-
-  removeData(title: string) {
-    localStorage.removeItem(title);
+  removeData(key: string) {
+    localStorage.removeItem(key);
   }
 
   formatData() {

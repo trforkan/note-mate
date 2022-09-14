@@ -1,3 +1,4 @@
+import { localStorageData } from './../../../model/models';
 import { LocalService } from './../../../local/local.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -6,6 +7,8 @@ import {
   MatDialogRef,
   MatDialog,
 } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-dialog',
@@ -20,6 +23,7 @@ export class DialogComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private snackbar: MatSnackBar,
     private local: LocalService,
     public dialogRef: MatDialogRef<DialogComponent>
   ) {}
@@ -27,16 +31,22 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {}
 
   saveData() {
-    console.log(this.note.value);
-    alert("Note added to local storage Successfully");
-    this.local.saveData(
-      <string>this.note.value.title,
-      <string>this.note.value.body
-    );
+    // console.log(this.note.value);
+    // alert("Note added to local storage Successfully");
+    this.local.saveData(this.note.value as localStorageData);
     this.dialogRef.close();
   }
 
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
+  }
+
+  openSnackBar() {
+    this.snackbar.open('Data Stored in local storage successfully');
+    this.saveData();
+
+    setTimeout(() => {
+      this.snackbar.dismiss();
+    }, 1500);
   }
 }

@@ -8,7 +8,7 @@
     </mat-form-field>
 
     <div class="search-field result-field">
-      <div *ngFor="let note of searchedData; index as i" fxLayout="row" fxLayoutAlign="center center">
+      <div *ngFor="let note of filteredNotes; index as i" fxLayout="row" fxLayoutAlign="space-between center">
         <mat-expansion-panel  [hideToggle]="false" class="expansion-panel" >
           <mat-expansion-panel-header>
               <mat-panel-title>Title : {{note.title}}</mat-panel-title>

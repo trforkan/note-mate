@@ -13,6 +13,7 @@
 
     .result-field {
       height: auto;
+      width: 50%;
       max-height: 70%;
       position: sticky;
       overflow-y: scroll;
@@ -21,7 +22,8 @@
         margin-bottom: 15px;
       }
       .delete-icon {
-        margin-left: 10px;
+        margin-right: 20px;
+        // padding-right: 10px;
       }
     }
 

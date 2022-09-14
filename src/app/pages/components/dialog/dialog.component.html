@@ -15,8 +15,8 @@
   </div>
 
   <div class="action-buttons" fxLayoutAlign="end">
-    <button (click)="closeDialog()" class="cancel-button" mat-raised-button >Cancel</button>
-    <button (click)="saveData()" class="save-button" mat-raised-button>Save</button>
+    <button mat-dialog-close class="cancel-button" mat-raised-button >Cancel</button>
+    <button (click)="openSnackBar()" class="save-button" mat-raised-button>Save</button>
   </div>
 
 </div>
