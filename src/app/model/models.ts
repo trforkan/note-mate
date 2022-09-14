@@ -1,4 +1,4 @@
-export interface localStorageData {
+export interface Note {
   title: string ,
   body: string
 };

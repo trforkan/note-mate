@@ -1,4 +1,4 @@
-import { localStorageData } from './../../../model/models';
+import { Note } from './../../../model/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalService } from './../../../local/local.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -13,8 +13,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  allData: localStorageData[] = [];
-  filteredNotes: localStorageData[] = [];
+  allData: Note[] = [];
+  filteredNotes: Note[] = [];
 
   dataPresent = false;
 

@@ -1,4 +1,4 @@
-import { localStorageData } from './../../../model/models';
+import { Note } from './../../../model/models';
 import { LocalService } from './../../../local/local.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
   saveData() {
     // console.log(this.note.value);
     // alert("Note added to local storage Successfully");
-    this.local.saveData(this.note.value as localStorageData);
+    this.local.saveData(this.note.value as Note);
     this.dialogRef.close();
   }
 

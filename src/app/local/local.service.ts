@@ -1,4 +1,4 @@
-import { localStorageData } from './../model/models';
+import { Note } from './../model/models';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,20 +8,23 @@ export class LocalService {
 
   constructor() {}
 
-  saveData(object: localStorageData) {
-    localStorage.setItem(object.title, JSON.stringify(object));
+  saveData(notes: Note) {
+    localStorage.setItem(notes.title, JSON.stringify(notes));
   }
 
   getData() {
-    var allNotes:localStorageData[]=[];
+    let allNotes:Note[]=[];
 
-    allNotes.splice(0);
+    // allNotes.splice(0);
 
     for(var i=0; i<localStorage.length; i++) {
       var key = (localStorage.key(i));
       var obj=localStorage.getItem((key as string));
       allNotes.push(JSON.parse(obj as string));
     }
+    // if(localStorage.getItem("allNotes")){
+    //   allNotes=JSON.parse(localStorage.getItem("allNotes"))
+    // }
 
     return allNotes;
   }
