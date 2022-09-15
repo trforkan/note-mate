@@ -54,15 +54,13 @@ export class HomeComponent implements OnInit {
     this.local.formatData();
   }
 
-  deleteNote(index: number) {
-
-    var titleName = localStorage.key(index);
-    this.local.removeData(titleName as string);
-    this.snackbar.open(`${titleName} is deleted successfully`);
+  deleteNote(keyValue: number) {
+    this.local.removeData(keyValue);
+    var noteTitle = localStorage.key(keyValue);
+    this.snackbar.open(`${noteTitle} is deleted successfully`);
     setTimeout(()=>{
       this.snackbar.dismiss();
     },1500);
-
     this.dataLoad();
   }
 

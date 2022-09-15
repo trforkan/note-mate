@@ -15,22 +15,19 @@ export class LocalService {
   getData() {
     let allNotes:Note[]=[];
 
-    // allNotes.splice(0);
-
     for(var i=0; i<localStorage.length; i++) {
-      var key = (localStorage.key(i));
-      var obj=localStorage.getItem((key as string));
+      let key = (localStorage.key(i));
+      let obj=localStorage.getItem((key as string));
       allNotes.push(JSON.parse(obj as string));
     }
-    // if(localStorage.getItem("allNotes")){
-    //   allNotes=JSON.parse(localStorage.getItem("allNotes"))
-    // }
-
     return allNotes;
   }
 
-  removeData(key: string) {
-    localStorage.removeItem(key);
+  removeData(uniqueKey: number) {
+
+    let keyValue = localStorage.key(uniqueKey);
+    localStorage.removeItem(keyValue as string);
+    // localStorage.removeItem(key);
   }
 
   formatData() {
